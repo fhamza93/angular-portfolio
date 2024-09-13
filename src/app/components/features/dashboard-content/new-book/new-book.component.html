@@ -1,0 +1,146 @@
+<div class="new-book-container">
+    <h2>Aggiungi Nuovo Libro</h2>
+    <form [formGroup]="newBookForm" (ngSubmit)="onSubmit()" class="book-form">
+
+        <div class="form-group">
+            <label for="titolo">Titolo</label>
+            <input id="titolo" formControlName="titolo" type="text" class="form-control" placeholder="Inserisci il titolo del libro" required>
+            <div *ngIf="newBookForm.get('titolo')?.invalid && (formSubmitted || newBookForm.get('titolo')?.touched)" class="error-message">
+                <small *ngIf="newBookForm.get('titolo')?.errors?.['required']">
+                    Il titolo è obbligatorio.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group flex-1">
+                <label for="autore">Autore</label>
+                <input id="autore" formControlName="autore" type="text" class="form-control" placeholder="Inserisci il nome dell'autore"
+                       (input)="filtraAutori($event)" list="autoriFamosi" required>
+                <datalist id="autoriFamosi">
+                    <option *ngFor="let autore of autoriFiltrati" [value]="autore"></option>
+                </datalist>
+                <div *ngIf="newBookForm.get('autore')?.invalid && (formSubmitted || newBookForm.get('autore')?.touched)" class="error-message">
+                    <small *ngIf="newBookForm.get('autore')?.errors?.['required']">
+                        L'autore è obbligatorio.
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="genere">Genere</label>
+                <input id="genere" formControlName="genere" type="text" class="form-control" placeholder="Inserisci il genere del libro"
+                       (input)="filtraGeneri($event)" list="generiFamosi" required>
+                <datalist id="generiFamosi">
+                    <option *ngFor="let genere of generiFiltrati" [value]="genere"></option>
+                </datalist>
+                <div *ngIf="newBookForm.get('genere')?.invalid && (formSubmitted || newBookForm.get('genere')?.touched)" class="error-message">
+                    <small *ngIf="newBookForm.get('genere')?.errors?.['required']">
+                        Il genere è obbligatorio.
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="annoPubblicazione">Anno di Pubblicazione</label>
+                <input id="annoPubblicazione" formControlName="annoPubblicazione" type="number" class="form-control" placeholder="Inserisci l'anno" required>
+                <div *ngIf="newBookForm.get('annoPubblicazione')?.invalid && (formSubmitted || newBookForm.get('annoPubblicazione')?.touched)" class="error-message">
+                    <small *ngIf="newBookForm.get('annoPubblicazione')?.errors?.['required']">
+                        L'anno di pubblicazione è obbligatorio.
+                    </small>
+                    <small *ngIf="newBookForm.get('annoPubblicazione')?.errors?.['min']">
+                        L'anno deve essere maggiore di 1900.
+                    </small>
+                    <small *ngIf="newBookForm.get('annoPubblicazione')?.errors?.['max']">
+                        L'anno non può superare l'anno corrente.
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="prezzo">Prezzo</label>
+                <div class="input-group">
+                    <input 
+                        id="prezzo" 
+                        formControlName="prezzo" 
+                        type="number" 
+                        class="form-control" 
+                        placeholder="Inserisci il prezzo del libro" 
+                        required 
+                        step="0.01">
+                    <span class="input-group-text">€</span> <!-- Simbolo dell'euro -->
+                </div>
+                <div *ngIf="newBookForm.get('prezzo')?.invalid && (formSubmitted || newBookForm.get('prezzo')?.touched)" class="error-message">
+                    <small *ngIf="newBookForm.get('prezzo')?.errors?.['required']">
+                        Il prezzo è obbligatorio.
+                    </small>
+                    <small *ngIf="newBookForm.get('prezzo')?.errors?.['min']">
+                        Il prezzo deve essere almeno 0.01.
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="isbn">ISBN</label>
+                <input id="isbn" formControlName="isbn" type="text" class="form-control" placeholder="Inserisci l'ISBN del libro" required>
+                <div *ngIf="newBookForm.get('isbn')?.invalid && (formSubmitted || newBookForm.get('isbn')?.touched)" class="error-message">
+                    <small *ngIf="newBookForm.get('isbn')?.errors?.['pattern']">
+                        L'ISBN deve essere valido e seguire il formato EAN-13.
+                    </small>
+                    <small *ngIf="newBookForm.get('prezzo')?.errors?.['required']">
+                        L'ISBN è obbligatorio.
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="numeroPagine">Numero di Pagine</label>
+                <input id="numeroPagine" formControlName="numeroPagine" type="number" class="form-control" placeholder="Inserisci il numero di pagine del libro" required>
+                <div *ngIf="newBookForm.get('numeroPagine')?.invalid && (formSubmitted || newBookForm.get('numeroPagine')?.touched)" class="error-message">
+                    <small *ngIf="newBookForm.get('numeroPagine')?.errors?.['required']">
+                        Il numero di pagine è obbligatorio.
+                    </small>
+                    <small *ngIf="newBookForm.get('numeroPagine')?.errors?.['min']">
+                        Il numero di pagine deve essere almeno 1.
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="lingua">Lingua</label>
+            <input id="lingua" formControlName="lingua" type="text" class="form-control" placeholder="Inserisci la lingua del libro" required>
+            <div *ngIf="newBookForm.get('lingua')?.invalid && (formSubmitted || newBookForm.get('lingua')?.touched)" class="error-message">
+                <small *ngIf="newBookForm.get('lingua')?.errors?.['required']">
+                    La lingua è obbligatoria.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="descrizione">Descrizione</label>
+            <textarea id="descrizione" formControlName="descrizione" class="form-control" placeholder="Inserisci una breve descrizione del libro" rows="3"></textarea>
+            <div *ngIf="newBookForm.get('descrizione')?.invalid && (formSubmitted || newBookForm.get('descrizione')?.touched)" class="error-message">
+                <small *ngIf="newBookForm.get('descrizione')?.errors?.['maxlength']">
+                    La descrizione non può superare i 1000 caratteri.
+                </small>
+                <small *ngIf="newBookForm.get('descrizione')?.errors?.['required']">
+                    Serve una minima descrizione del libro.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="copertina">Copertina (URL)</label>
+            <input id="copertina" formControlName="copertina" type="text" class="form-control" placeholder="Inserisci l'URL della copertina">
+            <div *ngIf="newBookForm.get('copertina')?.invalid && (formSubmitted || newBookForm.get('copertina')?.touched)" class="error-message">
+                <small *ngIf="newBookForm.get('copertina')?.errors?.['pattern']">
+                    L'URL deve essere valido. Deve terminare con png, jpg o jpeg.
+                </small>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Aggiungi Libro</button>
+    </form>
+</div>

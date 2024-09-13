@@ -1,0 +1,146 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #004b87;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+}
+
+.search-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Spazio tra la barra di ricerca e il catalogo */
+    width: 100%; /* Larghezza completa per adattare */
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 5px; /* Aggiungi margine */
+    flex: 1 1 200px; /* Flessibile per adattarsi meglio */
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #004b87;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 100%; /* Renderizza il bottone per occupare tutta la larghezza disponibile */
+}
+
+button:hover {
+    background-color: #003366;
+    transform: scale(1.05); /* Effetto zoom al passaggio del mouse */
+}
+
+.book-catalog {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colonne di uguale larghezza */
+    gap: 50px; /* Spazio tra i libri */
+    margin-top: 20px; /* Spazio sopra la griglia */
+    width: 100%; /* Larghezza completa per adattare */
+}
+
+.book-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s;
+    margin-bottom: 20px; /* Spazio tra le righe */
+}
+
+.book-item:hover {
+    transform: translateY(-5px); /* Piccola animazione al passaggio del mouse */
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Altezza fissa per mantenere il layout consistente */
+    overflow: hidden;
+}
+
+.book-item img {
+    width: 100%; /* Assicura che l'immagine occupi tutta la larghezza */
+    height: auto; /* Mantiene le proporzioni dell'immagine */
+    border-radius: 4px;
+}
+
+.no-image {
+    background-color: #d3d3d3; /* Colore di sfondo grigio */
+    color: #666; /* Colore del testo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%; /* Per coprire completamente il contenitore */
+    border-radius: 4px; /* Raggiungi gli angoli come le immagini */
+    font-size: 1.2em; /* Maggiore per una migliore leggibilità */
+    text-align: center;
+}
+
+.book-item h2 {
+    font-size: 1.5em;
+    margin: 10px 0 5px;
+}
+
+.book-item p {
+    margin: 5px 0;
+}
+
+.price {
+    font-weight: bold;
+    color: #004b87;
+    font-size: 1.2em;
+}
+
+.description {
+    color: #666;
+    font-size: 0.9em;
+    margin: 10px 0;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #004b87;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .book-catalog {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonne quando lo schermo è più piccolo */
+    }
+}
+
+@media (max-width: 480px) {
+    .book-catalog {
+        grid-template-columns: 1fr; /* 1 colonna quando lo schermo è molto piccolo */
+    }
+}

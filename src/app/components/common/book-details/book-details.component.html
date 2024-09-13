@@ -1,0 +1,25 @@
+<div class="book-detail-container" *ngIf="book; else loading">
+  <h2>{{ book.titolo }}</h2>
+  
+  <div class="book-image">
+    <img *ngIf="book.copertina; else placeholder" [src]="book.copertina" alt="{{ book.titolo }}" />
+    
+    <ng-template #placeholder>
+      <div class="placeholder-image"></div> <!-- Riquadro grigio se non c'è immagine -->
+    </ng-template>
+  </div>
+  
+  <p><strong>Autore:</strong> {{ book.autore }}</p>
+  <p><strong>Anno di Pubblicazione:</strong> {{ book.annoPubblicazione }}</p>
+  <p><strong>Genere:</strong> {{ book.genere }}</p>
+  <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+  <p><strong>Lingua:</strong> {{ book.lingua }}</p>
+  <p><strong>Descrizione:</strong> {{ book.descrizione }}</p>
+  <p><strong>Numero di Pagine:</strong> {{ book.numeroPagine }}</p>
+</div>
+
+<ng-template #loading>
+  <div class="loading-message">
+    Caricamento dei dettagli del libro...
+  </div>
+</ng-template>

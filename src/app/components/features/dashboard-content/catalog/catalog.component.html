@@ -1,0 +1,47 @@
+<div class="search-container">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca per titolo" (input)="filterBooks()" />
+    
+    <select [(ngModel)]="selectedGenere" (change)="filterBooks()">
+        <option value="">Seleziona genere</option>
+        <option *ngFor="let genere of generiDisponibili" [value]="genere">{{ genere }}</option>
+    </select>
+
+    <select [(ngModel)]="selectedAutore" (change)="filterBooks()">
+        <option value="">Seleziona autore</option>
+        <option *ngFor="let autore of autoriDisponibili" [value]="autore">{{ autore }}</option>
+    </select>
+
+    <select [(ngModel)]="selectedLingua" (change)="filterBooks()">
+        <option value="">Seleziona lingua</option>
+        <option *ngFor="let lingua of lingueDisponibili" [value]="lingua">{{ lingua }}</option>
+    </select>
+
+    <input type="text" [(ngModel)]="isbnTerm" placeholder="Cerca per ISBN" (input)="filterBooks()" />
+
+    <input type="number" [(ngModel)]="minPrezzo" placeholder="Prezzo Minimo" (input)="filterBooks()" />
+    <input type="number" [(ngModel)]="maxPrezzo" placeholder="Prezzo Massimo" (input)="filterBooks()" />
+
+    <button (click)="clearFilters()">Pulisci filtri</button>
+</div>
+
+<div class="book-catalog">
+    <div class="book-item" *ngFor="let book of filteredBooks">
+        <div class="image-container">
+            <img *ngIf="book.copertina; else noImage" [src]="book.copertina" [alt]="book.titolo">
+            <ng-template #noImage>
+                <div class="no-image">Nessuna immagine disponibile</div>
+            </ng-template>
+        </div>
+        <h2>{{ book.titolo }}</h2>
+        <p>Autore: {{ book.autore }}</p>
+        <p>Genere: {{ book.genere }}</p>
+        <p>Lingua: {{ book.lingua }}</p>
+        <p>ISBN: {{ book.isbn }}</p>
+        <p class="price">€{{ book.prezzo.toFixed(2) }}</p>
+        <p class="description">{{ book.descrizione | slice:0:100 }}...</p>
+        <button>
+        <!-- <button (click)="addToCart(book)">-->
+            <i class="fa fa-cart-plus"></i> Aggiungi al carrello
+        </button>
+    </div>
+</div>

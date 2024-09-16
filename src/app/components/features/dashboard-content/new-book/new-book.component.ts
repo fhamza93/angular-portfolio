@@ -80,7 +80,8 @@ export class NewBookComponent implements OnInit {
         this.authService.getCurrentUserUid(),
         newBookData.prezzo,
         new Date(),
-        new Date()
+        new Date(),
+        null
       );
 
       console.log('Nuovo libro:', book);

@@ -1,14 +1,15 @@
-    <div class="sidebar">
-        <h2 class="sidebar-title">Navigazione</h2> <!-- Aggiunto il titolo -->
-        <ul class="menu">
-            <li><a routerLink="/dashboard/catalogo" class="menu-item"><i class="fas fa-home"></i> Catalogo</a></li>
-            <li><a routerLink="/dashboard/nuovo_libro" class="menu-item"><i class="fas fa-calendar-day"></i> Inserisci Libro</a></li>
-            <li><a routerLink="/dashboard/bestseller" class="menu-item"><i class="fas fa-star"></i> Bestseller</a></li>
-            <li><a routerLink="/dashboard/offerte" class="menu-item"><i class="fas fa-tags"></i> Offerte</a></li>
-            <li><a routerLink="/dashboard/personale" class="menu-item"><i class="fas fa-tags"></i> Personale</a></li>
-            <li><a routerLink="/dashboard/chi_siamo" class="menu-item"><i class="fas fa-info-circle"></i> Chi Siamo</a></li>
-            <li><a routerLink="/dashboard/contatti" class="menu-item"><i class="fas fa-phone-alt"></i> Contatti</a></li>
-            <li><a href="#" class="menu-item" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-        </ul>
-    </div>
+<div class="sidebar">
+    <h2 class="sidebar-title">Navigazione</h2> <!-- Aggiunto il titolo -->
+    <ul class="menu">
+        <li *ngFor="let item of menuItems">
+        <a 
+            [routerLink]="item.routerLink"
+            class="menu-item"
+            (click)="setMenuItem(item.routerLink)"
+            [ngClass]="{ active: currentMenuItem === item.routerLink }">
+            <mat-icon>{{ item.icon }}</mat-icon> {{ item.label }}
+        </a>
+        </li>
+    </ul>              
+</div>
 

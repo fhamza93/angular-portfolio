@@ -1,0 +1,50 @@
+.contact-container {
+  width: 100%;
+  max-width: 600px; /* Imposta una larghezza massima per una migliore visualizzazione */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container h2 {
+  text-align: center;
+  color: #333;
+}
+
+.store-info {
+  margin-bottom: 20px;
+}
+
+.store-info p {
+  margin: 5px 0; /* Aggiungi margine tra i paragrafi */
+}
+
+.store-info a {
+  color: #004b87; /* Colore per i link */
+  text-decoration: none; /* Rimuovi la sottolineatura */
+}
+
+.store-info a:hover {
+  text-decoration: underline; /* Sottolinea il link al passaggio del mouse */
+}
+
+.opening-hours {
+  list-style-type: none;
+  padding: 0;
+}
+
+.opening-hours li {
+  display: flex; /* Usa flexbox per una disposizione più ordinata */
+  justify-content: space-between; /* Spazia i dati */
+  padding: 5px 0; /* Aggiungi padding tra gli elementi */
+}
+
+.day {
+  font-weight: bold; /* Rendi il giorno in grassetto */
+}
+
+.hours {
+  color: #555; /* Colore diverso per gli orari */
+}

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { BookFirebaseService } from '../../../../service/firebase/books/book-firebase.service';
+import { AcquisitionsFirebaseService } from '../../../../service/firebase/acquisitions/acquisitions-firebase.service';
 import { BookModel } from '../../../../models/Book';
+import { PurchaseModel } from '../../../../models/Purchase';
+import { AuthService } from '../../../../service/auth/auth.service';
 
 @Component({
   selector: 'app-catalog',
@@ -22,7 +25,11 @@ export class CatalogComponent {
   autoriDisponibili: string[] = [];
   lingueDisponibili: string[] = [];
 
-  constructor(private bookFirebaseService: BookFirebaseService) {}
+  constructor(
+    private bookFirebaseService: BookFirebaseService, 
+    private acquisitionsFirebaseService: AcquisitionsFirebaseService,
+    private authService: AuthService, 
+  ) {}
 
   ngOnInit(): void {
     this.bookFirebaseService.getAllBooks().subscribe(books => {
@@ -56,5 +63,10 @@ export class CatalogComponent {
     this.minPrezzo = 0;
     this.maxPrezzo = Infinity;
     this.filteredBooks = this.booksCatalog;
+  }
+
+  buyBook(book: BookModel) {
+    var purchase = new PurchaseModel(book.isbn, this.authService.getCurrentUserUid(), new Date());
+    this.acquisitionsFirebaseService.addPurchase(purchase);
   }
 }

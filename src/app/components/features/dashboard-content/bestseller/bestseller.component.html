@@ -1,1 +1,28 @@
-<p>bestseller works!</p>
+<div class="bestseller-container">
+  <h4>Bestseller</h4>
+
+  <div *ngIf="loading" class="loading">
+    Caricamento libri...
+  </div>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <div class="book-list">
+    <div *ngFor="let book of bestsellingBooks" class="book-row">
+      <img [src]="book.copertina" alt="{{ book.titolo }}" class="book-cover" />
+      <div class="book-details">
+        <h2>{{ book.titolo }}</h2>
+        <p><strong>Autore:</strong> {{ book.autore }}</p>
+        <p><strong>Anno:</strong> {{ book.annoPubblicazione }}</p>
+        <p><strong>Genere:</strong> {{ book.genere }}</p>
+        <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+        <p><strong>Vendite:</strong> {{ book.nAcquisti || 0 }}</p>
+      </div>
+      <button (click)="loadBookDetails(book.isbn)" class="purchase-button">
+        <i class="fas fa-shopping-cart"></i> <!-- Icona del carrello -->
+      </button>
+    </div>
+  </div>
+</div>

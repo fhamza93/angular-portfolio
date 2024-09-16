@@ -1,1 +1,18 @@
-<p>contacts works!</p>
+<div class="contact-container">
+  <h4>Contatti</h4>
+
+  <div class="store-info">
+    <h5>{{ storeInfo.name }}</h5>
+    <p><strong>Indirizzo: </strong> {{ storeInfo.address }}</p>
+    <p><strong>Telefono: </strong> <a href="tel:{{ storeInfo.phone }}">{{ storeInfo.phone }}</a></p>
+    <p><strong>Email: </strong> <a href="mailto:{{ storeInfo.email }}">{{ storeInfo.email }}</a></p>
+    <p><strong>Sito Web: </strong> <a href="https://{{ storeInfo.website }}" target="_blank">{{ storeInfo.website }}</a></p>
+  </div>
+
+  <h5>Orari di Apertura</h5>
+  <ul class="opening-hours">
+    <li *ngFor="let hour of openingHours">
+      <span class="day">{{ hour.day }}:</span> <span class="hours">{{ hour.hours }}</span>
+    </li>
+  </ul>
+</div>

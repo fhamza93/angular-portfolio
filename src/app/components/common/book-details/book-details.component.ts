@@ -18,7 +18,7 @@ export class BookDetailsComponent implements OnInit {
     this.isbn = this.route.snapshot.paramMap.get('isbn');
 
     if (this.isbn) {
-      this.bookFirebaseService.getBookById(this.isbn).subscribe(bookDetails => {
+      this.bookFirebaseService.getBookByISBN(this.isbn).subscribe(bookDetails => {
         this.book = bookDetails;
         console.log('Dettagli del libro:', this.book);
       });

@@ -1,0 +1,27 @@
+.chi-siamo-container {
+    width: 100%;
+    max-width: 800px; /* Imposta una larghezza massima per la contenitore */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chi-siamo-container h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .intro-section,
+  .history-section,
+  .values-section,
+  .contact-section {
+    margin-bottom: 20px;
+  }
+  
+  .values-section ul {
+    list-style-type: disc;
+    padding-left: 20px; /* Aggiungi padding per migliorare l'allineamento */
+  }
+  

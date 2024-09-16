@@ -1,0 +1,78 @@
+.bestseller-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  margin: 20px 0;
+}
+
+.book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.book-row {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.book-cover {
+  width: 100px;
+  height: auto;
+  border-radius: 4px;
+  margin-right: 15px;
+}
+
+.book-details {
+  flex: 1;
+}
+
+.book-details h2 {
+  font-size: 18px;
+  margin: 0 0 5px 0;
+  color: #007bff;
+}
+
+strong {
+  color: #333;
+}
+
+.purchase-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  transition: background-color 0.3s;
+}
+
+.purchase-button:hover {
+  background-color: #0056b3;
+}

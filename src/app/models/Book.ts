@@ -11,6 +11,7 @@ export class BookModel {
     private _prezzo: number;
     private _dataCreazione: Date;    
     private _dataAggiornamento: Date; 
+    private _nAcquisti: number | null;
 
     constructor(
         titolo: string,
@@ -25,7 +26,8 @@ export class BookModel {
         venditore: string,
         prezzo: number,
         dataCreazione: Date,
-        dataAggiornamento: Date
+        dataAggiornamento: Date,
+        nAcquisti: number | null
     ) {
         this._titolo = titolo;
         this._autore = autore;
@@ -39,6 +41,7 @@ export class BookModel {
         this._prezzo = prezzo;
         this._dataCreazione = dataCreazione;
         this._dataAggiornamento = dataAggiornamento;
+        this._nAcquisti = nAcquisti;
     }
 
     get titolo(): string {
@@ -138,8 +141,12 @@ export class BookModel {
         this._dataAggiornamento = value;
     }
 
-    getDettagli(): string {
-        return `${this._titolo}, scritto da ${this._autore}, pubblicato nel ${this._annoPubblicazione}. Genere: ${this._genere}. ISBN: ${this._isbn}. Lingua: ${this._lingua}. Descrizione: ${this._descrizione}. Numero di Pagine: ${this._numeroPagine}.`;
+    get nAcquisti(): number | null {
+        return this._nAcquisti;
+    }
+
+    set nAcquisti(value: number | null) {
+        this._nAcquisti = value;
     }
 
     static fromJson(json: any): BookModel {
@@ -156,7 +163,8 @@ export class BookModel {
             json.venditore,
             json.prezzo,
             new Date(json.dataCreazione),
-            new Date(json.dataAggiornamento)
+            new Date(json.dataAggiornamento),
+            json.nAcquisti !== undefined ? json.nAcquisti : null
         );
     }
 
@@ -173,7 +181,8 @@ export class BookModel {
             numeroPagine: this._numeroPagine,
             prezzo: this._prezzo,
             dataCreazione: this._dataCreazione.toISOString(), 
-            dataAggiornamento: this._dataAggiornamento.toISOString()
+            dataAggiornamento: this._dataAggiornamento.toISOString(),
+            nAcquisti: this._nAcquisti
         };
     }
 }

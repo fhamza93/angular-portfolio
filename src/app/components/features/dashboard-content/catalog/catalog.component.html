@@ -39,9 +39,9 @@
         <p>ISBN: {{ book.isbn }}</p>
         <p class="price">€{{ book.prezzo.toFixed(2) }}</p>
         <p class="description">{{ book.descrizione | slice:0:100 }}...</p>
-        <button>
         <!-- <button (click)="addToCart(book)">-->
-            <i class="fa fa-cart-plus"></i> Aggiungi al carrello
+        <button (click)="buyBook(book)">
+            <i class="fa fa-cart-plus"></i> Acquista
         </button>
     </div>
 </div>

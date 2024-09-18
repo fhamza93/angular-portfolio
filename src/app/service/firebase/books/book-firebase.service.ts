@@ -75,22 +75,15 @@ export class BookFirebaseService {
     const books: BookModel[] = [];
     
     for (const isbn of sortedIsbns) {
-        console.log(`Recupero libro con ISBN: ${isbn}`);
         
         const book = await firstValueFrom(this.getBookByISBN(isbn));
-        console.log("Dettagli del libro:", book);
         if (book) {
-          console.log("Dettagli del libro:", book);
-          console.log("Numero di acquisti:", book.nAcquisti); 
-          book.nAcquisti = isbnCount[isbn];
+          book.nAcquistiTotali = isbnCount[isbn];
           books.push(book);
         } else {
           console.log("Nessun libro trovato per l'ISBN:", isbn);
         }
     }
-
-    console.log("Libri più acquistati recuperati:", books);
-
     return books;
   }
 }

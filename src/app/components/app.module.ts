@@ -35,6 +35,8 @@ import { LoadingComponent } from './common/loading/loading.component';
 import { BookDetailsComponent } from './common/book-details/book-details.component';
 import { PersonalComponent } from './features/dashboard-content/personal/personal.component';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { PersonalSellerComponent } from './features/dashboard-content/personal/personal-seller/personal-seller.component';
+import { PersonalBuyerComponent } from './features/dashboard-content/personal/personal-buyer/personal-buyer.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
     NewBookComponent,
     LoadingComponent,
     BookDetailsComponent,
-    PersonalComponent
+    PersonalComponent,
+    PersonalSellerComponent,
+    PersonalBuyerComponent
   ],
   imports: [
     BrowserModule,

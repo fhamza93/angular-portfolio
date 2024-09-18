@@ -32,6 +32,7 @@ export class CatalogComponent {
   ) {}
 
   ngOnInit(): void {
+    this.authService.isCurrentUserClient();
     this.bookFirebaseService.getAllBooks().subscribe(books => {
       this.booksCatalog = books;
       this.filteredBooks = books;
@@ -68,5 +69,9 @@ export class CatalogComponent {
   buyBook(book: BookModel) {
     var purchase = new PurchaseModel(book.isbn, this.authService.getCurrentUserUid(), new Date());
     this.acquisitionsFirebaseService.addPurchase(purchase);
+  }
+
+  isClient(): boolean {
+    return this.authService.isCurrentUserClient();
   }
 }

@@ -10,27 +10,44 @@ import { NavigationService } from '../../../service/navigation/navigation.servic
 })
 export class SideNavComponent implements OnInit {
   currentMenuItem: string | null = null;
-
-  menuItems = [
-    { label: 'Catalogo', routerLink: '/dashboard/catalogo', icon: 'home' },
-    { label: 'Inserisci Libro', routerLink: '/dashboard/nuovo_libro', icon: 'add_circle' },
-    { label: 'Bestseller', routerLink: '/dashboard/bestseller', icon: 'star' },
-    //{ label: 'Offerte', routerLink: '/dashboard/offerte', icon: 'local_offer' },
-    { label: 'Personale', routerLink: '/dashboard/personale', icon: 'group' },
-    { label: 'Chi Siamo', routerLink: '/dashboard/chi_siamo', icon: 'info' },
-    { label: 'Contatti', routerLink: '/dashboard/contatti', icon: 'phone' },
-    { label: 'Logout', routerLink: '', icon: 'logout', action: true },
-  ];
+  menuItems: any[] = [];
+  
+  catalogoMenuItem = { label: 'Catalogo', routerLink: '/dashboard/catalogo', icon: 'home' };
+  insertBookMenuItem = { label: 'Inserisci Libro', routerLink: '/dashboard/nuovo_libro', icon: 'add_circle' };
+  bestsellerMenuItem = { label: 'Bestseller', routerLink: '/dashboard/bestseller', icon: 'star' };
+  offerteMenuItem = { label: 'Offerte', routerLink: '/dashboard/offerte', icon: 'local_offer' };
+  personaleMenuItem = { label: 'Personale', routerLink: '/dashboard/personale', icon: 'group' };
+  chiSiamoMenuItem = { label: 'Chi Siamo', routerLink: '/dashboard/chi_siamo', icon: 'info' };
+  contattiMenuItem = { label: 'Contatti', routerLink: '/dashboard/contatti', icon: 'phone' };
+  logoutMenuItem = { label: 'Logout', routerLink: '', icon: 'logout', action: true };
 
   constructor(private authService: AuthService, private router: Router, private navigationService: NavigationService) {}
 
   ngOnInit() {
+    this.menuItems = this.authService.isCurrentUserAdmin() ? [
+      this.catalogoMenuItem,
+      this.insertBookMenuItem,
+      this.bestsellerMenuItem,
+      //this.offerteMenuItem,
+      this.personaleMenuItem,
+      this.chiSiamoMenuItem,
+      this.contattiMenuItem,
+      this.logoutMenuItem
+     ] : [
+      this.catalogoMenuItem,
+      this.bestsellerMenuItem,
+      //this.offerteMenuItem,
+      this.personaleMenuItem,
+      this.chiSiamoMenuItem,
+      this.contattiMenuItem,
+      this.logoutMenuItem
+     ];
+
     this.currentMenuItem = this.navigationService.getMenuItem();
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentMenuItem = this.router.url;
-        this.router.navigate([this.currentMenuItem]);
         this.navigationService.setMenuItem(this.currentMenuItem);
       }
     });
@@ -44,5 +61,9 @@ export class SideNavComponent implements OnInit {
     this.authService.logout();
     this.navigationService.clearMenuItem(); 
     this.router.navigate(['/login']);
+  }
+
+  menuTitle() {
+    return this.authService.isCurrentUserAdmin() ? 'Venditore' : 'Cliente';
   }
 }

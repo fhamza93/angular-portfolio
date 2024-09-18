@@ -1,0 +1,16 @@
+<div class="purchased-books-container">
+    <h5>Libri Acquistati</h5>
+    <div *ngFor="let book of books" class="book-item">
+      <img [src]="book.copertina" alt="{{ book.titolo }}" class="book-cover" />
+      <div class="book-info">
+        <h3>{{ book.titolo }}</h3>
+        <p><strong>Autore:</strong> {{ book.autore }}</p>
+        <p><strong>Anno di Pubblicazione:</strong> {{ book.annoPubblicazione }}</p>
+        <p><strong>Genere:</strong> {{ book.genere }}</p>
+        <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+        <p><strong>Prezzo:</strong> €{{ book.prezzo.toFixed(2) }}</p>
+        <p><strong>Numero acquisti:</strong> {{ book.nAcquistiCliente }}</p>
+      </div>
+    </div>
+  </div>
+  

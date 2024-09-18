@@ -26,7 +26,8 @@ export class AcquisitionsFirebaseService {
   async getBookPurchaseCount(isbn: string): Promise<number> {
     console.log(`Recupero acquisti per ISBN: ${isbn}`);
 
-    const purchases = await this.db.list<PurchaseModel>('purchases', ref => ref.orderByChild('isbn').equalTo(isbn)).valueChanges().pipe(take(1)).toPromise();
+    const purchases = await this.db.list<PurchaseModel>('purchases', ref => 
+      ref.orderByChild('isbn').equalTo(isbn)).valueChanges().pipe(take(1)).toPromise();
 
     const count = purchases ? purchases.length : 0;
     
@@ -34,4 +35,16 @@ export class AcquisitionsFirebaseService {
     
     return count;
   }
+  
+  async getPurchasesByUser(userUid: string): Promise<PurchaseModel[]> {
+    const purchasesSnapshot = await this.db.list('purchases', ref =>
+      ref.orderByChild('acquirente').equalTo(userUid)
+    ).valueChanges().pipe(take(1)).toPromise();
+    
+    if (!purchasesSnapshot) {
+      return [];
+    }
+  
+    return purchasesSnapshot.map(p => PurchaseModel.fromJson(p));
+  }  
 }

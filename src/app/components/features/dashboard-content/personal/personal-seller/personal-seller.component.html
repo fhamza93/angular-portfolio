@@ -1,0 +1,23 @@
+<div class="book-list-container">
+  <h5>Libri in vendita</h5>
+  <div *ngFor="let book of books" class="book-list-item">
+    <img [src]="book.copertina" alt="{{ book.titolo }} Copertina" class="book-cover" />
+    <div class="book-info">
+      <h5>{{ book.titolo }}</h5>
+      <p><strong>Autore:</strong> {{ book.autore }}</p>
+      <p><strong>Anno di Pubblicazione:</strong> {{ book.annoPubblicazione }}</p>
+      <p><strong>Genere:</strong> {{ book.genere }}</p>
+      <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+      <p><strong>Prezzo:</strong> €{{ book.prezzo.toFixed(2) }}</p>
+      <p><strong>Disponibilità:</strong> {{ book.disponibilita }}</p>
+
+      <!-- Aggiunto un div per la sezione delle azioni -->
+      <div class="book-actions">
+        <div class="button-container">
+          <button (click)="editBook(book)" class="btn-edit">Modifica</button>
+          <button (click)="deleteBook(book)" class="btn-delete">Elimina</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

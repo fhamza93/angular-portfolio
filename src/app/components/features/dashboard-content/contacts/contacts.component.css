@@ -1,6 +1,5 @@
 .contact-container {
   width: 100%;
-  max-width: 600px; /* Imposta una larghezza massima per una migliore visualizzazione */
   margin: 0 auto;
   padding: 20px;
   background-color: #f4f4f4;
@@ -18,33 +17,37 @@
 }
 
 .store-info p {
-  margin: 5px 0; /* Aggiungi margine tra i paragrafi */
+  margin: 5px 0;
 }
 
 .store-info a {
-  color: #004b87; /* Colore per i link */
-  text-decoration: none; /* Rimuovi la sottolineatura */
+  color: #004b87;
+  text-decoration: none;
 }
 
 .store-info a:hover {
-  text-decoration: underline; /* Sottolinea il link al passaggio del mouse */
+  text-decoration: underline;
 }
 
 .opening-hours {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .opening-hours li {
-  display: flex; /* Usa flexbox per una disposizione più ordinata */
-  justify-content: space-between; /* Spazia i dati */
-  padding: 5px 0; /* Aggiungi padding tra gli elementi */
+  display: flex;
+  justify-content: flex-start; 
+  padding: 0;
+  margin: 0;
 }
 
 .day {
-  font-weight: bold; /* Rendi il giorno in grassetto */
+  font-weight: bold;
+  margin: 0;
 }
 
 .hours {
-  color: #555; /* Colore diverso per gli orari */
+  color: #555;
+  margin-left: 5px; 
 }

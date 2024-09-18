@@ -1,0 +1,23 @@
+.purchased-books-container {
+    margin: 0 auto;
+  }
+  
+  .book-item {
+    display: flex;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+  }
+  
+  .book-cover {
+    height: 300px;
+    border-radius: 4px;
+    margin-right: 15px; 
+  }
+  
+  .book-info {
+    flex: 1;
+  }
+  

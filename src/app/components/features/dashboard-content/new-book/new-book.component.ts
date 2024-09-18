@@ -36,7 +36,8 @@ export class NewBookComponent implements OnInit {
       descrizione: ['', [Validators.required, Validators.maxLength(1000)]],
       copertina: ['', Validators.pattern(/^https?:\/\/.+/)],
       numeroPagine: ['', [Validators.required, Validators.min(1)]],
-      prezzo: ['', [Validators.required]]
+      prezzo: ['', [Validators.required]],
+      disponibilità: [0, [Validators.required, Validators.min(0)]]
     });
   }
 
@@ -77,10 +78,11 @@ export class NewBookComponent implements OnInit {
         newBookData.descrizione,
         newBookData.copertina,
         newBookData.numeroPagine,
-        this.authService.getCurrentUserUid(),
         newBookData.prezzo,
         new Date(),
         new Date(),
+        newBookData.disponibilità,
+        null,
         null
       );
 

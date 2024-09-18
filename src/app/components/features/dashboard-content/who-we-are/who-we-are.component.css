@@ -1,6 +1,5 @@
 .chi-siamo-container {
     width: 100%;
-    max-width: 800px; /* Imposta una larghezza massima per la contenitore */
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -22,6 +21,6 @@
   
   .values-section ul {
     list-style-type: disc;
-    padding-left: 20px; /* Aggiungi padding per migliorare l'allineamento */
+    padding-left: 20px;
   }
   

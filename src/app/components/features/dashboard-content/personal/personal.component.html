@@ -1,1 +1,4 @@
-<p>personal works!</p>
+<app-personal-seller *ngIf="isSeller(); else personalBuyer"></app-personal-seller>
+<ng-template #personalBuyer>
+    <app-personal-buyer></app-personal-buyer>
+</ng-template>

@@ -11,7 +11,9 @@ export class BookModel {
     private _prezzo: number;
     private _dataCreazione: Date;    
     private _dataAggiornamento: Date; 
-    private _nAcquisti: number | null;
+    private _disponibilita: number;
+    private _nAcquistiTotali: number | null;
+    private _nAcquistiCliente: number | null;
 
     constructor(
         titolo: string,
@@ -23,11 +25,12 @@ export class BookModel {
         descrizione: string,
         copertina: string,
         numeroPagine: number,
-        venditore: string,
         prezzo: number,
         dataCreazione: Date,
         dataAggiornamento: Date,
-        nAcquisti: number | null
+        disponibilita: number,
+        nAcquistiTotali: number | null,
+        nAcquistiCliente: number | null
     ) {
         this._titolo = titolo;
         this._autore = autore;
@@ -41,7 +44,9 @@ export class BookModel {
         this._prezzo = prezzo;
         this._dataCreazione = dataCreazione;
         this._dataAggiornamento = dataAggiornamento;
-        this._nAcquisti = nAcquisti;
+        this._disponibilita = disponibilita;
+        this._nAcquistiTotali = nAcquistiTotali;
+        this._nAcquistiCliente = nAcquistiCliente;
     }
 
     get titolo(): string {
@@ -141,12 +146,28 @@ export class BookModel {
         this._dataAggiornamento = value;
     }
 
-    get nAcquisti(): number | null {
-        return this._nAcquisti;
+    get disponibilita(): number {
+        return this._disponibilita;
     }
 
-    set nAcquisti(value: number | null) {
-        this._nAcquisti = value;
+    set disponibilita(value: number) {
+        this._disponibilita = value;
+    }
+
+    get nAcquistiTotali(): number | null {
+        return this._nAcquistiTotali;
+    }
+
+    set nAcquistiTotali(value: number | null) {
+        this._nAcquistiTotali = value;
+    }
+
+    get nAcquistiCliente(): number | null {
+        return this._nAcquistiCliente;
+    }
+
+    set nAcquistiCliente(value: number | null) {
+        this._nAcquistiCliente = value;
     }
 
     static fromJson(json: any): BookModel {
@@ -160,11 +181,12 @@ export class BookModel {
             json.descrizione,
             json.copertina,
             json.numeroPagine,
-            json.venditore,
             json.prezzo,
             new Date(json.dataCreazione),
             new Date(json.dataAggiornamento),
-            json.nAcquisti !== undefined ? json.nAcquisti : null
+            json.disponibilita,
+            json.nAcquistiTotali !== undefined ? json.nAcquistiTotali : null,
+            json.nAcquistiCliente !== undefined ? json.nAcquistiCliente : null
         );
     }
 
@@ -182,7 +204,9 @@ export class BookModel {
             prezzo: this._prezzo,
             dataCreazione: this._dataCreazione.toISOString(), 
             dataAggiornamento: this._dataAggiornamento.toISOString(),
-            nAcquisti: this._nAcquisti
+            disponibilita: this._disponibilita,
+            nAcquistiTotali: this._nAcquistiTotali,
+            nAcquistiCliente: this._nAcquistiCliente
         };
     }
 }

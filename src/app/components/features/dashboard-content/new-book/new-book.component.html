@@ -1,7 +1,5 @@
 <div class="new-book-container">
-    <h2>Aggiungi Nuovo Libro</h2>
     <form [formGroup]="newBookForm" (ngSubmit)="onSubmit()" class="book-form">
-
         <div class="form-group">
             <label for="titolo">Titolo</label>
             <input id="titolo" formControlName="titolo" type="text" class="form-control" placeholder="Inserisci il titolo del libro" required>
@@ -40,10 +38,8 @@
                     </small>
                 </div>
             </div>
-        </div>
 
-        <div class="form-row">
-            <div class="form-group">
+            <div class="form-group flex-1">
                 <label for="annoPubblicazione">Anno di Pubblicazione</label>
                 <input id="annoPubblicazione" formControlName="annoPubblicazione" type="number" class="form-control" placeholder="Inserisci l'anno" required>
                 <div *ngIf="newBookForm.get('annoPubblicazione')?.invalid && (formSubmitted || newBookForm.get('annoPubblicazione')?.touched)" class="error-message">
@@ -58,6 +54,9 @@
                     </small>
                 </div>
             </div>
+        </div>
+
+        <div class="form-row">
             <div class="form-group">
                 <label for="prezzo">Prezzo</label>
                 <div class="input-group">
@@ -103,6 +102,19 @@
                     </small>
                     <small *ngIf="newBookForm.get('numeroPagine')?.errors?.['min']">
                         Il numero di pagine deve essere almeno 1.
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group"> 
+                <label for="disponibilita">Disponibilità</label>
+                <input id="disponibilita" formControlName="disponibilita" type="number" class="form-control" placeholder="Inserisci la disponibilità" required>
+                <div *ngIf="newBookForm.get('disponibilita')?.invalid && (formSubmitted || newBookForm.get('disponibilita')?.touched)" class="error-message">
+                    <small *ngIf="newBookForm.get('disponibilita')?.errors?.['required']">
+                        La disponibilità è obbligatoria.
+                    </small>
+                    <small *ngIf="newBookForm.get('disponibilita')?.errors?.['min']">
+                        La disponibilità deve essere almeno 0.
                     </small>
                 </div>
             </div>

@@ -1,6 +1,4 @@
 <div class="bestseller-container">
-  <h4>Bestseller</h4>
-
   <div *ngIf="loading" class="loading">
     Caricamento libri...
   </div>
@@ -18,10 +16,10 @@
         <p><strong>Anno:</strong> {{ book.annoPubblicazione }}</p>
         <p><strong>Genere:</strong> {{ book.genere }}</p>
         <p><strong>ISBN:</strong> {{ book.isbn }}</p>
-        <p><strong>Vendite:</strong> {{ book.nAcquisti || 0 }}</p>
+        <p><strong>Vendite:</strong> {{ book.nAcquistiTotali || 0 }}</p>
       </div>
-      <button (click)="loadBookDetails(book.isbn)" class="purchase-button">
-        <i class="fas fa-shopping-cart"></i> <!-- Icona del carrello -->
+      <button (click)="loadBookDetails(book.isbn)" class="purchase-button" *ngIf="isClient()">
+        <i class="fas fa-shopping-cart"></i> Acquista
       </button>
     </div>
   </div>

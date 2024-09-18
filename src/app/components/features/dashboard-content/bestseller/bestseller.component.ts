@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookFirebaseService } from '../../../../service/firebase/books/book-firebase.service';
-import { AcquisitionsFirebaseService } from '../../../../service/firebase/acquisitions/acquisitions-firebase.service';
+import { AuthService } from '../../../../service/auth/auth.service';
 import { BookModel } from '../../../../models/Book';
 
 @Component({
@@ -13,7 +13,8 @@ export class BestsellerComponent implements OnInit {
   loading: boolean = true;
   errorMessage: string | null = null;
 
-  constructor(private bookFirebaseService: BookFirebaseService, private acquisitionsFirebaseService: AcquisitionsFirebaseService) {}
+  constructor(private bookFirebaseService: BookFirebaseService, private authService: AuthService, 
+  ) {}
 
   ngOnInit(): void {
     this.loadBestsellingBooks();
@@ -44,8 +45,6 @@ export class BestsellerComponent implements OnInit {
     this.bookFirebaseService.getBookByISBN(isbn).subscribe({
       next: (book) => {
         if (book) {
-          console.log("Dettagli del libro:", book);
-          console.log("Numero di acquisti:", book.nAcquisti);
         } else {
           console.log("Nessun libro trovato per l'ISBN:", isbn);
         }
@@ -55,4 +54,9 @@ export class BestsellerComponent implements OnInit {
       }
     });
   }
+
+  isClient(): boolean {
+    return this.authService.isCurrentUserClient();
+  }
+
 }

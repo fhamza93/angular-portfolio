@@ -40,7 +40,7 @@
         <p class="price">€{{ book.prezzo.toFixed(2) }}</p>
         <p class="description">{{ book.descrizione | slice:0:100 }}...</p>
         <!-- <button (click)="addToCart(book)">-->
-        <button (click)="buyBook(book)">
+        <button (click)="buyBook(book)"  *ngIf="isClient()">
             <i class="fa fa-cart-plus"></i> Acquista
         </button>
     </div>
